@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import backgroundImage from './assets/code.jpg'
-import '../Telas.css'
 
 
 const GlobalCSS = createGlobalStyle`
@@ -32,7 +31,7 @@ const Botao = styled.button`
  display: flex;
        align-items: center;
        justify-content: center;
-opacity:0.7;
+opacity:0.8;
 cursor:pointer;
 width: 8vw;
 height: 12vh;
@@ -111,7 +110,7 @@ align-items: center;
 justify-content: center;
 box-shadow: 2px 2px 2px 2px;
 background-color: #000000;
-opacity:0.6;
+opacity:1;
 
 @media (max-width: 481px)  {
        width: 78vw;
@@ -175,7 +174,6 @@ function App() {
   const [segundoNumero, setSegundoNumero] = useState("");
   const [operador, setOperador] = useState(null);
   const [resultado, setResultado] = useState("");
-  const [cor, setCor] = useState("")
 
 
 
@@ -192,12 +190,10 @@ function App() {
 
   const ClicarOperador = (item) => {
     setResultado("")
-    setCor("green")
     setOperador(item.target.value)
   }
 
   const Limpar = () => {
-    setCor("")
     setPrimeiroNumero("")
     setSegundoNumero("")
     setOperador(null)
@@ -206,7 +202,6 @@ function App() {
 
   const calcular = () => {
     let Resposta = ""
-    setCor("")
     if (operador === "+") {
       setPrimeiroNumero("")
       setSegundoNumero("")
@@ -265,16 +260,17 @@ function App() {
               <Botao onClick={Clicar} value="9">9</Botao>
               <Botao onClick={Clicar} value="6">6</Botao>
               <Botao onClick={Clicar} value="3">3</Botao>
-              <BotaoOperador onClick={ClicarOperador} value="+">+</BotaoOperador>
+              <BotaoOperador  onClick={ClicarOperador} value="+">+</BotaoOperador>
             </div>
 
 
 
             <div>
-              <BotaoOperador onClick={ClicarOperador} value="X">X</BotaoOperador>
+            <BotaoOperador value="Limpar" onClick={Limpar}>AC</BotaoOperador>
+             
 
               <BotaoOperador onClick={ClicarOperador} value="÷">÷</BotaoOperador>
-              <BotaoOperador value="Limpar" onClick={Limpar}>Limpar</BotaoOperador>
+              <BotaoOperador onClick={ClicarOperador} value="X">x</BotaoOperador>
               <BotaoOperador onClick={calcular}>=</BotaoOperador>
 
             </div>
