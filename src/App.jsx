@@ -42,10 +42,11 @@ border: solid;
 box-shadow: 1px 1px 1px 1px;
 background-color: rgb(5, 130, 220);    
 &:hover{
-  scale: 1.1;
+  scale: 1.01;
   transition: 500ms;
   opacity: 1;
 }
+
 
 @media (max-width: 481px)  {
        font-size: 1rem;
@@ -64,7 +65,54 @@ background-color: rgb(5, 130, 220);
     }
 
 `
+const BotaoOperador = styled.button`
+display: flex;
+align-items: center;
+justify-content: center;
+opacity:0.7;
+cursor:pointer;
+width: 8vw;
+height: 12vh;
+border-radius: 40px;
+font-size: 1.2rem;
+transition: 200ms;
+border: solid;
+box-shadow: 1px 1px 1px 1px;
+background-color: rgb(222, 200, 7);
+&:hover{
+  scale: 1.01;
+  transition: 200ms;
+  opacity: 1;
+}
+
+@media (max-width: 481px)  {
+       font-size: 0.5rem;
+       width: 18vw;
+       height: 8vh;
+       
+    }
+    @media (max-width: 600px){
+        width: 14vw;
+        font-size: 0.3rem;
+
+      }
+
+  
+    @media (max-width: 1024px){
+      font-size: 0.5rem;
+     
+    }
+
+    @media (max-width: 1280px){
+          font-size: 0.8rem;
+    }
+
+
+`
+
 const Visor = styled.div`
+max-width: 33%;
+overflow: hidden;
 background-color: #000000;
 color: white;
 opacity: 0.9;
@@ -116,50 +164,7 @@ opacity:1;
     }
 
 `
-const BotaoOperador = styled.button`
-display: flex;
-align-items: center;
-justify-content: center;
-opacity:0.7;
-cursor:pointer;
-width: 8vw;
-height: 12vh;
-border-radius: 40px;
-font-size: 1.2rem;
-transition: 200ms;
-border: solid;
-box-shadow: 1px 1px 1px 1px;
-background-color: rgb(222, 200, 7);
-&:hover{
-  scale: 1.1;
-  transition: 200ms;
-  opacity: 1;
-}
 
-@media (max-width: 481px)  {
-       font-size: 0.5rem;
-       width: 18vw;
-       height: 8vh;
-       
-    }
-    @media (max-width: 600px){
-        width: 14vw;
-        font-size: 0.3rem;
-
-      }
-
-  
-    @media (max-width: 1024px){
-      font-size: 0.5rem;
-     
-    }
-
-    @media (max-width: 1280px){
-          font-size: 0.8rem;
-    }
-
-
-`
 function App() {
 
   const [primeiroNumero, setPrimeiroNumero] = useState("");
