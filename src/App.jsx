@@ -47,7 +47,6 @@ background-color: rgb(5, 130, 220);
   opacity: 1;
 }
 
-
 @media (max-width: 481px)  {
        font-size: 1rem;
        width: 20vw;
@@ -65,9 +64,7 @@ background-color: rgb(5, 130, 220);
     }
 
 `
-
 const Visor = styled.div`
-
 background-color: #000000;
 color: white;
 opacity: 0.9;
@@ -77,7 +74,7 @@ opacity: 0.9;
                  0 0 15px  white,
                  0 0 20px  white;
   border: solid #000000;
-  width: 34vw;
+  width: 33%;
   border-radius: 14px;
   height: 8vh;
   box-shadow: 2px 2px 2px 2px #000000;
@@ -99,29 +96,26 @@ opacity: 0.9;
     }
 
 `
-
-
 const Corpo = styled.div`
 border: solid;
 border-radius: 14px;
-width: 34vw;
+width: 32.9%;
 display: flex;
 align-items: center;
-justify-content: center;
+flex-wrap: wrap;
 box-shadow: 2px 2px 2px 2px;
 background-color: #000000;
 opacity:1;
 
 @media (max-width: 481px)  {
-       width: 78vw;
+       width: 78%;
     }
     @media (max-width: 600px){
-      width: 58vw;
+      width: 58%;
 
     }
 
 `
-
 const BotaoOperador = styled.button`
 display: flex;
 align-items: center;
@@ -141,7 +135,6 @@ background-color: rgb(222, 200, 7);
   transition: 200ms;
   opacity: 1;
 }
-
 
 @media (max-width: 481px)  {
        font-size: 0.5rem;
@@ -167,15 +160,12 @@ background-color: rgb(222, 200, 7);
 
 
 `
-
 function App() {
 
   const [primeiroNumero, setPrimeiroNumero] = useState("");
   const [segundoNumero, setSegundoNumero] = useState("");
   const [operador, setOperador] = useState(null);
   const [resultado, setResultado] = useState("");
-
-
 
   const Clicar = (item) => {
     setResultado("")
@@ -186,7 +176,6 @@ function App() {
       setSegundoNumero(segundoNumero.concat(String(item.target.value)))
     }
   }
-
 
   const ClicarOperador = (item) => {
     setResultado("")
@@ -234,49 +223,37 @@ function App() {
 
       <Body>
         <Visor> {primeiroNumero} {operador} {segundoNumero} {resultado} </Visor>
+        <Corpo>
+          <div>
+            <Botao onClick={Clicar} value="7">7</Botao>
+            <Botao onClick={Clicar} value="4">4</Botao>
+            <Botao onClick={Clicar} value="1">1</Botao>
+            <Botao onClick={Clicar} value="0">0</Botao>
+          </div>
 
 
-        <div>
-
-          <Corpo>
-            <div>
-              <Botao onClick={Clicar} value="7">7</Botao>
-              <Botao onClick={Clicar} value="4">4</Botao>
-              <Botao onClick={Clicar} value="1">1</Botao>
-              <Botao onClick={Clicar} value="0">0</Botao>
-            </div>
+          <div>
+            <Botao onClick={Clicar} value="8">8</Botao>
+            <Botao onClick={Clicar} value="5">5</Botao>
+            <Botao onClick={Clicar} value="2">2</Botao>
+            <BotaoOperador onClick={ClicarOperador} value="-">-</BotaoOperador>
+          </div>
 
 
-            <div>
-              <Botao onClick={Clicar} value="8">8</Botao>
-              <Botao onClick={Clicar} value="5">5</Botao>
-              <Botao onClick={Clicar} value="2">2</Botao>
+          <div>
+            <Botao onClick={Clicar} value="9">9</Botao>
+            <Botao onClick={Clicar} value="6">6</Botao>
+            <Botao onClick={Clicar} value="3">3</Botao>
+            <BotaoOperador onClick={ClicarOperador} value="+">+</BotaoOperador>
+          </div>
 
-              <BotaoOperador onClick={ClicarOperador} value="-">-</BotaoOperador>
-            </div>
-
-
-            <div>
-              <Botao onClick={Clicar} value="9">9</Botao>
-              <Botao onClick={Clicar} value="6">6</Botao>
-              <Botao onClick={Clicar} value="3">3</Botao>
-              <BotaoOperador  onClick={ClicarOperador} value="+">+</BotaoOperador>
-            </div>
-
-
-
-            <div>
+          <div>
             <BotaoOperador value="Limpar" onClick={Limpar}>AC</BotaoOperador>
-             
-
-              <BotaoOperador onClick={ClicarOperador} value="÷">÷</BotaoOperador>
-              <BotaoOperador onClick={ClicarOperador} value="X">x</BotaoOperador>
-              <BotaoOperador onClick={calcular}>=</BotaoOperador>
-
-            </div>
-          </Corpo>
-
-        </div>
+            <BotaoOperador onClick={ClicarOperador} value="÷">÷</BotaoOperador>
+            <BotaoOperador onClick={ClicarOperador} value="X">x</BotaoOperador>
+            <BotaoOperador onClick={calcular}>=</BotaoOperador>
+          </div>
+        </Corpo>
       </Body>
 
     </>
