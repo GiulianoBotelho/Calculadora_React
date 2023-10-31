@@ -13,9 +13,25 @@ const GlobalCSS = createGlobalStyle`
   padding:0;
   margin:0;
   box-sizing:border-box;
+  overflow-y: hidden;
+ 
  }
+ ::-webkit-scrollbar {
+    width: 3px; 
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000102; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(0,0,5);
+    border-radius:20px; 
+    border: 0.1px solid #db9edd;
+  }
 `
 
+// BACKGROUND
 const Body = styled.body`
 background-image: url(${backgroundImage});
 background-position: center;
@@ -27,6 +43,8 @@ height: 100vh;
 flex-direction: column;
  `
 
+
+// BOTÕES NUMERICOS
 const Botao = styled.button`
  display: flex;
        align-items: center;
@@ -42,7 +60,6 @@ border: solid;
 box-shadow: 1px 1px 1px 1px;
 background-color: rgb(5, 130, 220);    
 &:hover{
-  scale: 1.01;
   transition: 500ms;
   opacity: 1;
 }
@@ -65,6 +82,7 @@ background-color: rgb(5, 130, 220);
     }
 
 `
+// BOTAO OPERADORES
 const BotaoOperador = styled.button`
 display: flex;
 align-items: center;
@@ -80,14 +98,13 @@ border: solid;
 box-shadow: 1px 1px 1px 1px;
 background-color: rgb(222, 200, 7);
 &:hover{
-  scale: 1.01;
   transition: 200ms;
   opacity: 1;
 }
 
 @media (max-width: 481px)  {
        font-size: 0.5rem;
-       width: 18vw;
+       width: 12vw;
        height: 8vh;
        
     }
@@ -109,14 +126,13 @@ background-color: rgb(222, 200, 7);
 
 
 `
-
+// VISOR
 const Visor = styled.div`
-max-width: 33%;
-overflow: hidden;
+overflow: auto;
 background-color: #000000;
 color: white;
 opacity: 0.9;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-shadow: 0 0 5px blueviolet,
                  0 0 10px  blueviolet,
                  0 0 15px  white,
@@ -124,12 +140,11 @@ opacity: 0.9;
   border: solid #000000;
   width: 33%;
   border-radius: 14px;
-  height: 8vh;
+  height: 12vh;
   box-shadow: 2px 2px 2px 2px #000000;
 
   @media (max-width: 481px)  {
-       font-size: 0.5rem;
-       height: 6vh;
+       height: 8.8vh;
        width: 78vw;
         
     }
@@ -139,12 +154,12 @@ opacity: 0.9;
     }
 
     @media (max-width: 1024px){
-      font-size: 1.2rem;
+      font-size: 1rem;
       
     }
 
 `
-const Corpo = styled.div`
+const Calculadora = styled.div`
 border: solid;
 border-radius: 14px;
 width: 32.9%;
@@ -228,7 +243,7 @@ function App() {
 
       <Body>
         <Visor> {primeiroNumero} {operador} {segundoNumero} {resultado} </Visor>
-        <Corpo>
+        <Calculadora>
           <div>
             <Botao onClick={Clicar} value="7">7</Botao>
             <Botao onClick={Clicar} value="4">4</Botao>
@@ -258,7 +273,7 @@ function App() {
             <BotaoOperador onClick={ClicarOperador} value="X">x</BotaoOperador>
             <BotaoOperador onClick={calcular}>=</BotaoOperador>
           </div>
-        </Corpo>
+        </Calculadora>
       </Body>
 
     </>
