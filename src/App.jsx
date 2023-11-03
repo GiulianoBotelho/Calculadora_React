@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import backgroundImage from './assets/code.jpg'
+import Modal from './components/modal.jsx'
+
 
 
 const GlobalCSS = createGlobalStyle`
@@ -30,7 +32,6 @@ const GlobalCSS = createGlobalStyle`
     border: 0.1px solid #db9edd;
   }
 `
-
 // BACKGROUND
 const Body = styled.body`
 background-image: url(${backgroundImage});
@@ -126,8 +127,12 @@ background-color: rgb(222, 200, 7);
 
 
 `
-// VISOR
+//VISOR
 const Visor = styled.div`
+padding-right: 8px;
+display: flex;
+align-items: center;
+justify-content: flex-end;
 overflow: auto;
 background-color: #000000;
 color: white;
@@ -140,7 +145,7 @@ opacity: 0.9;
   border: solid #000000;
   width: 33%;
   border-radius: 14px;
-  height: 12vh;
+  height: 10vh;
   box-shadow: 2px 2px 2px 2px #000000;
 
   @media (max-width: 481px)  {
@@ -159,6 +164,7 @@ opacity: 0.9;
     }
 
 `
+//CORPO DA CALCULADORA
 const Calculadora = styled.div`
 border: solid;
 border-radius: 14px;
@@ -181,12 +187,14 @@ opacity:1;
 `
 
 function App() {
-
+//VARIAVEIS DE ESTADO
   const [primeiroNumero, setPrimeiroNumero] = useState("");
   const [segundoNumero, setSegundoNumero] = useState("");
   const [operador, setOperador] = useState(null);
-  const [resultado, setResultado] = useState("");
+  const [resultado, setResultado] = useState(0);
 
+
+ 
   const Clicar = (item) => {
     setResultado("")
     if (!operador) {
@@ -198,7 +206,6 @@ function App() {
   }
 
   const ClicarOperador = (item) => {
-    setResultado("")
     setOperador(item.target.value)
   }
 
@@ -206,13 +213,14 @@ function App() {
     setPrimeiroNumero("")
     setSegundoNumero("")
     setOperador(null)
-    setResultado("")
+    setResultado(0)
   }
 
+ //REALIZACAO DO CALCULO
   const calcular = () => {
     let Resposta = ""
     if (operador === "+") {
-      setPrimeiroNumero("")
+      setPrimeiroNumero("") //LIMPA OS DADOS PARA EXIBIR APENAS O RESULTADO
       setSegundoNumero("")
       setOperador(null)
       Resposta = Number(primeiroNumero) + Number(segundoNumero)
@@ -240,8 +248,8 @@ function App() {
   return (
     <>
       <GlobalCSS />
-
       <Body>
+      <Modal/>
         <Visor> {primeiroNumero} {operador} {segundoNumero} {resultado} </Visor>
         <Calculadora>
           <div>
@@ -268,10 +276,10 @@ function App() {
           </div>
 
           <div>
-            <BotaoOperador value="Limpar" onClick={Limpar}>AC</BotaoOperador>
+            <BotaoOperador  value="Limpar" onClick={Limpar}>AC</BotaoOperador>
             <BotaoOperador onClick={ClicarOperador} value="÷">÷</BotaoOperador>
             <BotaoOperador onClick={ClicarOperador} value="X">x</BotaoOperador>
-            <BotaoOperador onClick={calcular}>=</BotaoOperador>
+            <BotaoOperador style={{backgroundColor:"#D29F23"}} onClick={calcular}>=</BotaoOperador>
           </div>
         </Calculadora>
       </Body>
