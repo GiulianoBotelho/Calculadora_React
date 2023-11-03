@@ -189,14 +189,14 @@ opacity:1;
 `
 
 function App() {
-//VARIAVEIS DE ESTADO
+  //VARIAVEIS DE ESTADO
   const [primeiroNumero, setPrimeiroNumero] = useState("");
   const [segundoNumero, setSegundoNumero] = useState("");
   const [operador, setOperador] = useState(null);
   const [resultado, setResultado] = useState(0);
 
 
- 
+
   const Clicar = (item) => {
     setResultado("")
     if (!operador) {
@@ -218,40 +218,40 @@ function App() {
     setResultado(0)
   }
 
- //REALIZACAO DO CALCULO
+  //REALIZACAO DO CALCULO
   const calcular = () => {
-    let Resposta = ""
-    if (operador === "+") {
-      setPrimeiroNumero("") //LIMPA OS DADOS PARA EXIBIR APENAS O RESULTADO
-      setSegundoNumero("")
-      setOperador(null)
-      Resposta = Number(primeiroNumero) + Number(segundoNumero)
-    } else if (operador === "-") {
-      setPrimeiroNumero("")
-      setSegundoNumero("")
-      setOperador(null)
-      Resposta = Number(primeiroNumero) - Number(segundoNumero)
-    } else if (operador === "X") {
-      setPrimeiroNumero("")
-      setSegundoNumero("")
-      setOperador(null)
-      Resposta = Number(primeiroNumero) * Number(segundoNumero)
-    } else if (operador === "÷") {
-      setPrimeiroNumero("")
-      setSegundoNumero("")
-      setOperador(null)
-
-      Resposta = Number(primeiroNumero) / Number(segundoNumero)
+    if (operador) {
+    let resultado = 0;
+    
+    switch (operador) {
+      case "+":
+        resultado = Number(primeiroNumero) + Number(segundoNumero);
+        break;
+      case "-":
+        resultado = Number(primeiroNumero) - Number(segundoNumero);
+        break;
+      case "X":
+        resultado = Number(primeiroNumero) * Number(segundoNumero);
+        break;
+      case "÷":
+        resultado = Number(primeiroNumero) / Number(segundoNumero);
+        break;
+      default:
+        break;
     }
-
-    setResultado(Resposta.toString())
-  }
+    
+    setPrimeiroNumero("");
+    setSegundoNumero("");
+    setOperador(null);
+    setResultado(resultado.toString());
+    }
+    }
 
   return (
     <>
       <GlobalCSS />
       <Body>
-      <Modal/>
+        <Modal />
         <Visor> {primeiroNumero} {operador} {segundoNumero} {resultado} </Visor>
         <Calculadora>
           <div>
@@ -278,10 +278,10 @@ function App() {
           </div>
 
           <div>
-            <BotaoOperador  value="Limpar" onClick={Limpar}>AC</BotaoOperador>
+            <BotaoOperador value="Limpar" onClick={Limpar}>AC</BotaoOperador>
             <BotaoOperador onClick={ClicarOperador} value="÷">÷</BotaoOperador>
             <BotaoOperador onClick={ClicarOperador} value="X">x</BotaoOperador>
-            <BotaoOperador style={{backgroundColor:"#D29F23"}} onClick={calcular}>=</BotaoOperador>
+            <BotaoOperador style={{ backgroundColor: "#D29F23" }} onClick={calcular}>=</BotaoOperador>
           </div>
         </Calculadora>
       </Body>
