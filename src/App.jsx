@@ -18,6 +18,7 @@ const GlobalCSS = createGlobalStyle`
   overflow-y: hidden;
  
  }
+ //ESTILIZANDO BARRA DE ROLAGEM
  ::-webkit-scrollbar {
     width: 3px; 
   }
@@ -65,7 +66,7 @@ background-color: rgb(5, 130, 220);
   opacity: 1;
 }
 
-
+//RESPONSIVIDADE
 @media (max-width: 481px)  {
        font-size: 1rem;
        width: 20vw;
@@ -103,6 +104,7 @@ background-color: rgb(222, 200, 7);
   opacity: 1;
 }
 
+//RESPONSIVIDADE
 @media (max-width: 481px)  {
        font-size: 0.5rem;
        width: 12vw;

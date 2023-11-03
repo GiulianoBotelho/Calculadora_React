@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import {motion} from 'framer-motion'
+import {motion, AnimatePresence} from 'framer-motion'
 
 
 const BackgroundModal = styled(motion.section) `
@@ -93,21 +93,21 @@ export default function Modal() {
     useEffect(()=>{
         const timer = setTimeout(()=>{
             setIsOpen(true)
-            document.body.classList.add('modal-open');
         },2000);
         return () => clearTimeout(timer);
-        document.body.classList.remove('modal-open');
-
     },[])
 
 if(!isOpen){
     return null
 }
   return (
-    <BackgroundModal
+   <AnimatePresence>
+   {isOpen && (  <BackgroundModal
+    
         initial={{opacity:0}}
         animate={{opacity:1}}
         transition={{duration:1, delay:1}}
+        exit={{opacity:0, x:-1000}}
     
     >  
     <ModalTittle>Bem-vindo a minha calculadora!  <ModalButton onClick={()=> setIsOpen(false)} >X</ModalButton></ModalTittle>
@@ -115,6 +115,7 @@ if(!isOpen){
           initial={{opacity:0, x:-1000}}
           animate={{opacity:1, x:0}}
           transition={{duration:1, delay:1}}
+          exit={{opacity:0, x:-1000}}
           >
             
             <Paragraph>Esta é a minha calculadora, resultado de um desafio proposto no curso Vai na Web.</Paragraph>
@@ -129,6 +130,7 @@ if(!isOpen){
           </ContentModal>
           
     </BackgroundModal>
-
+    ) }
+    </AnimatePresence>
   )
 }
